@@ -49,6 +49,8 @@ in
     pkgs.pass
     pkgs.wl-clipboard # Required for pass's password copy feature
 
+    pkgs.gparted
+
     # pkgs.pika-backup
 
     # pkgs.p7zip

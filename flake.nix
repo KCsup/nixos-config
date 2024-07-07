@@ -78,11 +78,16 @@
         system = system;
         modules = [
           ./hosts/wsl/configuration.nix
-          inputs.nixos-wsl.nixosModules.default
-          inputs.home-manager.nixosModules.default
-          # {
-          #   nixpkgs.hostPlatform = system;
-          # }
+          inputs.nixos-wsl.nixosModules.wsl
+          inputs.home-manager.nixosModules.home-manager
+          {
+              home-manager.users.${user}.imports = [
+                ./modules/home.nix
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+          }
         ];
       };
     };

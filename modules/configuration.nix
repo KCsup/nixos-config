@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, user, ... }:
+{ config, lib, pkgs, inputs, user, isWSL, ... }:
 
 {
   imports =
@@ -13,8 +13,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = !isWSL;
+  boot.loader.efi.canTouchEfiVariables = !isWSL;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -24,7 +24,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = !isWSL;
 
   # Set your time zone.
   time.timeZone = "America/Detroit";
@@ -45,7 +45,7 @@
   };
 
 
-  services.xserver = {
+  services.xserver = lib.mkIf (!isWSL) {
     enable = true;
 
     # displayManager = {
@@ -60,26 +60,24 @@
     #     # luadbi-mysql # Database abstraction layer
     #   ];
     # };
-  };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
+    # Configure keymap in X11
     layout = "us";
     xkbVariant = "";
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = !isWSL;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  sound.enable = !isWSL;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  security.rtkit.enable = !isWSL;
+  services.pipewire = lib.mkIf (!isWSL) {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
@@ -140,7 +138,7 @@
   #  wget
   ];
 
-  services.udev.extraRules = ''
+  services.udev.extraRules = lib.mkIf (!isWSL) ''
     ${builtins.readFile ./slippi/udev/51-gcadapter.rules}
     ${builtins.readFile ./slippi/udev/51-losslessadapter.rules}
   '';
@@ -164,15 +162,15 @@
   #   })
 
   # ];
-  boot.extraModulePackages = [ 
+  boot.extraModulePackages = lib.mkIf (!isWSL) [ 
     config.boot.kernelPackages.gcadapter-oc-kmod
   ];
 
   # to autoload at boot:
-  boot.kernelModules = [ 
+  boot.kernelModules = lib.mkIf (!isWSL) [ 
     "gcadapter_oc"
   ];
-  boot.kernelParams = [ "gcadapter_oc.rate=1" ];
+  boot.kernelParams = lib.mkIf (!isWSL) [ "gcadapter_oc.rate=1" ];
 
   # programs.gnupg.agent = {
   #   enable = true;

@@ -20,15 +20,16 @@
     specialArgs = { inherit inputs user;};
   in
   {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = {
+      omen = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         modules = [
-          ./hosts/laptop/configuration.nix
+          ./hosts/omen/configuration.nix
           inputs.home-manager.nixosModules.home-manager
           {
               home-manager.users.${user}.imports = [
                 ./modules/home.nix
-                ./hosts/laptop/home.nix
+                ./hosts/omen/home.nix
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -36,6 +37,7 @@
           }
         ];
       };
+    };
 
     # packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system:
     #   let

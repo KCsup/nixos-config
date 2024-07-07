@@ -13,7 +13,8 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      update = "sudo nixos-rebuild switch --flake /etc/nixos#default";
+      update-framework = "sudo nixos-rebuild switch --flake ~/.nixconf#framework";
+      update-wsl = "sudo nixos-rebuild switch --flake ~/.nixconf#wsl";
       ls = "eza";
       cd = "z";
       sr = "sudo reboot";

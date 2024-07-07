@@ -3,6 +3,6 @@ My NixOS Config.
 
 # Installing
 ```
-mkdir -p ~/.nixconf && cd ~/.nixconf
-git clone https://github.com/KCsup/nixos-config.git
+cd ~ && git clone https://github.com/KCsup/nixos-config.git
+mv nixos-config .nixconf
 ```

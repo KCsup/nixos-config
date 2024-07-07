@@ -12,21 +12,28 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
   let
+    user = "josh";
+  
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+
+    specialArgs = { inherit inputs user;};
   in
   {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = specialArgs;
         modules = [
           ./hosts/laptop/configuration.nix
-          inputs.home-manager.nixosModules.default
-          # {
-          #     home-manager.users.josh = import ./home.nix;
-          #     home-manager.useGlobalPkgs = true;
-          #     home-manager.useUserPackages = true;
-          #     home-manager.extraSpecialArgs = { inherit inputs; };
-          # }
+          inputs.home-manager.nixosModules.home-manager
+          {
+              home-manager.users.${user}.imports = [
+                ./modules/home.nix
+                ./hosts/laptop/home.nix
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+          }
         ];
       };
 

@@ -3,9 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -55,15 +60,20 @@
         ];
 
       };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = [
+          ./hosts/wsl/configuration.nix
+          inputs.nixos-wsl.nixosModules.default
+          inputs.home-manager.nixosModules.default
+          # {
+          #   nixpkgs.hostPlatform = system;
+          # }
+        ];
+      };
     };
 
-    # packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system:
-    #   let
-    #     pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-    #   in
-    #   {
-    #     slippi = pkgs.callPackage ./applications/slippi { };
-    #   }
-    # );
   };
 }

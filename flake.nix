@@ -37,6 +37,24 @@
           }
         ];
       };
+
+      framework = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+	modules = [
+          ./hosts/framework/configuration.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+              home-manager.users.${user}.imports = [
+                ./modules/home.nix
+                # ./hosts/framework/home.nix
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+          }
+        ];
+
+      };
     };
 
     # packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system:

@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.nil # LSP for Nix
+    pkgs.lua-language-server # LS for Lua
   ];
   
   programs.helix = {

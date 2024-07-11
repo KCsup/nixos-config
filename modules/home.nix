@@ -32,9 +32,9 @@
 
     pkgs.p7zip
 
-    (pkgs.callPackage ./slippi {
-      playbackSlippi = false;
-    })
+    # (pkgs.callPackage ./slippi {
+    #   playbackSlippi = false;
+    # })
     
     pkgs.steam-run
 

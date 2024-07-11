@@ -30,10 +30,8 @@
     nixosConfigurations = {
       omen = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs user;
-
           isWSL = false;
-        };
+        } // specialArgs;
         modules = [
           ./hosts/omen/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -51,10 +49,8 @@
 
       framework = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs user;
-
           isWSL = false;
-        };
+        } // specialArgs;
 	      modules = [
           ./hosts/framework/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -65,7 +61,7 @@
           {
               home-manager.users.${user}.imports = [
                 ./modules/home.nix
-                # ./hosts/framework/home.nix
+                ./hosts/framework/home.nix
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -76,10 +72,8 @@
 
       wsl = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs user;
-
           isWSL = true;
-        };
+        } // specialArgs;
         system = system;
         modules = [
           ./hosts/wsl/configuration.nix

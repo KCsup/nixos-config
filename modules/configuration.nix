@@ -13,7 +13,10 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = !isWSL;
+  # boot.loader.systemd-boot.enable = !isWSL;
+  boot.loader.grub.enable = !isWSL;
+  boot.loader.grub.efiSupport = !isWSL;
+  boot.loader.grub.device = lib.mkIf (!isWSL) "nodev";
   boot.loader.efi.canTouchEfiVariables = !isWSL;
 
   networking.hostName = "nixos"; # Define your hostname.

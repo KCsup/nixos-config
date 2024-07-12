@@ -26,7 +26,7 @@
   '';
 
   services.fwupd.enable = true;
-  # hardware.framework.amd-7040.preventWakeOnAC = true;
+  hardware.framework.amd-7040.preventWakeOnAC = true;
 
   # boot.loader.systemd-boot.configurationLimit = 20;
 }

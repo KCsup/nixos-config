@@ -9,6 +9,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       safe.directory = "/etc/nixos";
+      credential.helper = "store";
     };
   };
 }

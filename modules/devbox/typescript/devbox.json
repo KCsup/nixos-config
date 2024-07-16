@@ -4,7 +4,8 @@
     "typescript@latest",
     "nodejs@latest",
     "nodemon@latest",
-    "nodePackages.ts-node@latest"
+    "nodePackages.ts-node@latest",
+    "typescript-language-server@latest"
   ],
   "shell": {
     "init_hook": [

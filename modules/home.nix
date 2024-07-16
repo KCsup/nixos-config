@@ -40,6 +40,8 @@
 
     pkgs.bitwarden-desktop
     pkgs.bitwarden-cli
+
+    pkgs.devbox
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

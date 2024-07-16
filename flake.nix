@@ -24,14 +24,17 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
 
-    specialArgs = { inherit inputs user;};
+    extraSpecialArgs = { inherit inputs user;};
   in
   {
     nixosConfigurations = {
-      omen = nixpkgs.lib.nixosSystem {
-        specialArgs = {
+      omen = let
+        args = {
           isWSL = false;
-        } // specialArgs;
+        } // extraSpecialArgs;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
         modules = [
           ./hosts/omen/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -42,15 +45,18 @@
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.extraSpecialArgs = args;
           }
         ];
       };
 
-      framework = nixpkgs.lib.nixosSystem {
-        specialArgs = {
+      framework = let
+        args = {
           isWSL = false;
-        } // specialArgs;
+        } // extraSpecialArgs;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
 	      modules = [
           ./hosts/framework/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -65,15 +71,18 @@
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.extraSpecialArgs = args;
           }
         ];
       };
 
-      wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {
+      wsl = let
+        args = {
           isWSL = true;
-        } // specialArgs;
+        } // extraSpecialArgs;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
         system = system;
         modules = [
           ./hosts/wsl/configuration.nix
@@ -82,10 +91,11 @@
           {
               home-manager.users.${user}.imports = [
                 ./modules/home.nix
+                ./hosts/wsl/home.nix
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.extraSpecialArgs = args;
           }
         ];
       };

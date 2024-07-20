@@ -28,5 +28,8 @@
   services.fwupd.enable = true;
   hardware.framework.amd-7040.preventWakeOnAC = true;
 
+  # Fixes the connectivity issues with WiFi
+  networking.wireless.iwd.enable = true;
+
   # boot.loader.systemd-boot.configurationLimit = 20;
 }

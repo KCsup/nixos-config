@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostName, ... }:
 
 {
   home.packages = [
@@ -13,8 +13,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      update-framework = "sudo nixos-rebuild switch --flake ~/.nixconf#framework";
-      update-wsl = "sudo nixos-rebuild switch --flake ~/.nixconf#wsl";
+      update = "sudo nixos-rebuild switch --flake ~/.nixconf#${hostName}";
       ls = "eza";
       cd = "z";
       sr = "sudo reboot";

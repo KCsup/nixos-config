@@ -31,6 +31,7 @@
       omen = let
         args = {
           isWSL = false;
+          hostName = "omen";
         } // extraSpecialArgs;
       in
       nixpkgs.lib.nixosSystem {
@@ -53,6 +54,7 @@
       framework = let
         args = {
           isWSL = false;
+          hostName = "framework";
         } // extraSpecialArgs;
       in
       nixpkgs.lib.nixosSystem {
@@ -79,6 +81,7 @@
       wsl = let
         args = {
           isWSL = true;
+          hostName = "wsl";
         } // extraSpecialArgs;
       in
       nixpkgs.lib.nixosSystem {

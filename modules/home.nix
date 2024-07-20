@@ -42,6 +42,9 @@
     pkgs.bitwarden-cli
 
     pkgs.devbox
+
+    pkgs.qbittorrent
+    pkgs.vlc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

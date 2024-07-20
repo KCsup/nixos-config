@@ -7,5 +7,7 @@
     })
 
     pkgs.anytype
+
+    pkgs.ventoy
   ];
 }

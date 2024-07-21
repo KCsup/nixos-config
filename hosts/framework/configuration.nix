@@ -13,7 +13,7 @@
     ];
 
     
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.extraEntries = ''
     menuentry "Windows" {
       insmod part_gpt

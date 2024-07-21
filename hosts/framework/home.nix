@@ -9,5 +9,7 @@
     pkgs.anytype
 
     pkgs.ventoy
+
+    pkgs.fusee-interfacee-tk
   ];
 }

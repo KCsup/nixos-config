@@ -12,4 +12,11 @@
 
     pkgs.fusee-interfacee-tk
   ];
+
+  # Enables fractional scaling
+  dconf.settings = {
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
+    };
+  };
 }

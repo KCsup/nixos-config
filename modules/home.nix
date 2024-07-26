@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, lib, user, ... }:
 
 {
   imports = map (n: "${./home-manager/shared}/${n}") (builtins.attrNames (builtins.readDir ./home-manager/shared));
@@ -45,6 +45,27 @@
 
     pkgs.qbittorrent
     pkgs.vlc
+
+    pkgs.spotify
+
+    pkgs.htop
+
+    (let
+      pname = "rustlings";
+      version = "6.1.0";
+    in
+    pkgs.rustPlatform.buildRustPackage {
+      inherit pname version;
+
+      src = pkgs.fetchCrate {
+        inherit pname version;
+        sha256 = "sha256-vzZbj9Ouaa4hplfqLi2ZdTuVc5s+RONgjQNWv/h9PKM=";
+      };
+
+      cargoSha256 = "sha256-Pj+BWKgF/WIHlVq6AqHluI2+BTNhc81o1TCODZaPNxI=";
+
+      nativeBuildInputs = [ pkgs.pkg-config ];
+    })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -55,7 +76,11 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    # ".config/awesome/".source = dotfiles/awesome;
+    ".config/awesome" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/${user}/.nixconf/dotfiles/awesome";
+      # recursive = true;
+    };
+    
     # ".config/cava/".source = dotfiles/cava;
     # ".config/mpd/".source = dotfiles/mpd;
     # ".config/mpDris2".source = dotfiles/mpDris2;

@@ -1,5 +1,8 @@
 { config, pkgs, lib, user, ... }:
 
+let
+  background-image-path = "file:///home/${user}/.nixconf/modules/home-manager/garf.png";
+in
 {
   imports = map (n: "${./home-manager/shared}/${n}") (builtins.attrNames (builtins.readDir ./home-manager/shared));
   
@@ -112,6 +115,18 @@
   home.sessionVariables = {
     EDITOR = "hx";
     SUDO_EDITOR = "hx";
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-windows = [ "<Alt>Tab" ];
+      switch-applications = [ "" ];
+    };
+
+    "org/gnome/desktop/background" = {
+      picture-uri = background-image-path;
+      picture-uri-dark = background-image-path;
+    };
   };
 
   # Let Home Manager install and manage itself.

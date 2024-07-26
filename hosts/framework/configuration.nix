@@ -30,6 +30,7 @@
 
   # Fixes the connectivity issues with WiFi
   networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   # boot.loader.systemd-boot.configurationLimit = 20;
 }

@@ -1,4 +1,4 @@
-{ playbackSlippi, pkgs ? import <nixpkgs> {} }:
+{ playbackSlippi, lib, pkgs ? import <nixpkgs> {} }:
 let
 
   netplay-desktop = pkgs.makeDesktopItem {
@@ -24,13 +24,13 @@ let
 in
 pkgs.stdenv.mkDerivation rec {
   pname = "slippi-ishiiruka";
-  version = "3.4.0";
+  version = "3.4.1";
   name = "${pname}-${version}-${if playbackSlippi then "playback" else "netplay"}";
   src = pkgs.fetchFromGitHub {
     owner = "project-slippi";
     repo = "Ishiiruka";
     rev = "v${version}";
-    hash = "sha256-qYPrAPAPOoCqfidLsT+ycQd2dXtsjo1PRt4TznVZf6U=";
+    hash = "sha256-uqy9YQnvryTHmskzlX+4st1VacnHbpC2gdC+PgvFUlA=";
     fetchSubmodules = true;
   };
 

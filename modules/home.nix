@@ -69,6 +69,8 @@ in
 
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
+
+    pkgs.protonvpn-gui
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

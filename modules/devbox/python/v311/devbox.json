@@ -1,0 +1,13 @@
+{
+    "packages": [
+        "python311",
+        "python311Packages.python-lsp-server"
+    ],
+    "env": {
+        // Install your virtual environment in `.venv`
+        "VENV_DIR": ".venv"
+    },
+    "shell": {
+        "init_hook": ". $VENV_DIR/bin/activate"
+    }
+}

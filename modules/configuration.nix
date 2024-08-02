@@ -12,6 +12,9 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # For nixd
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
   # Bootloader.
   # boot.loader.systemd-boot.enable = !isWSL;
   boot.loader.grub.enable = !isWSL;

@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    pkgs.nil # LSP for Nix
+    pkgs.nixd # LSP for Nix
     pkgs.lua-language-server # LS for Lua
   ];
   
@@ -64,6 +64,10 @@
             };
           };
         };
+
+        nixd = {
+          command = "nixd";
+        };
       };
 
       language = [
@@ -71,6 +75,11 @@
           name = "python";
           language-servers = [ "pylsp" ];
           file-types = [ "py" ];
+        }
+        {
+          name = "nix";
+          language-servers = [ "nixd" ];
+          file-types = [ "nix" ];
         }
       ];
     };

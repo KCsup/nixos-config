@@ -25,34 +25,30 @@ in
   # environment.
 
   home.packages = [
-    pkgs.firefox
-    pkgs.discord-ptb
-
-
+    # system
     pkgs.gparted
-
     pkgs.pika-backup
-
     pkgs.p7zip
+    pkgs.steam-run
+    pkgs.bitwarden-desktop
+    pkgs.bitwarden-cli
+    pkgs.htop
+    pkgs.protonvpn-gui
 
     # (pkgs.callPackage ./slippi {
     #   playbackSlippi = false;
     # })
-    
-    pkgs.steam-run
 
-    pkgs.bitwarden-desktop
-    pkgs.bitwarden-cli
-
-    pkgs.devbox
-
+    # media
     pkgs.qbittorrent
     pkgs.vlc
-
     pkgs.spotify
+    pkgs.firefox
+    pkgs.discord-ptb
 
-    pkgs.htop
-
+    # dev
+    pkgs.devbox
+    pkgs.insomnia
     (let
       pname = "rustlings";
       version = "6.1.0";
@@ -69,8 +65,6 @@ in
 
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
-
-    pkgs.protonvpn-gui
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

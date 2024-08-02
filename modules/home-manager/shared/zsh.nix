@@ -7,7 +7,6 @@
     pkgs.zoxide
     pkgs.zellij
     pkgs.eza
-    pkgs.bat
   ];
   
   programs.zsh = {
@@ -28,5 +27,13 @@
       neofetch
       eval "$(zoxide init zsh)"
     '';
+  };
+
+  programs.bat = {
+    enable = true;
+
+    config = {
+      theme = "gruvbox-dark";
+    };
   };
 }

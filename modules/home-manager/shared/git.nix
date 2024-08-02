@@ -11,5 +11,12 @@
       safe.directory = "/etc/nixos";
       credential.helper = "store";
     };
+
+    delta = {
+      enable = true;
+      options = {
+        theme = "gruvbox-dark";
+      };
+    };
   };
 }

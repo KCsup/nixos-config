@@ -16,6 +16,7 @@
       enable = true;
       options = {
         theme = "gruvbox-dark";
+        side-by-side = true;
       };
     };
   };

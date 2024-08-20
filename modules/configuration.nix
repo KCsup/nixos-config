@@ -30,20 +30,21 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  # networking.networkmanager.enable = !isWSL;
+  networking.networkmanager.enable = !isWSL;
+  networking.networkmanager.wifi.powersave = isWSL;
 
   
-  networking.wireless.iwd = lib.mkIf (!isWSL) {
-    enable = true;
-    # settings = {
-    #   IPv6 = {
-    #     Enabled = true;
-    #   };
-    #   Settings = {
-    #     AutoConnect = true;
-    #   };
-    # };
-  };
+  # networking.wireless.iwd = lib.mkIf (!isWSL) {
+  #   enable = true;
+  #   # settings = {
+  #   #   IPv6 = {
+  #   #     Enabled = true;
+  #   #   };
+  #   #   Settings = {
+  #   #     AutoConnect = true;
+  #   #   };
+  #   # };
+  # };
 
   # Set your time zone.
   time.timeZone = "America/Detroit";

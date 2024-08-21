@@ -34,6 +34,7 @@ in
     pkgs.bitwarden-cli
     pkgs.htop
     pkgs.protonvpn-gui
+    pkgs.qdirstat
 
     # (pkgs.callPackage ./slippi {
     #   playbackSlippi = false;
@@ -45,6 +46,9 @@ in
     pkgs.spotify
     pkgs.firefox
     pkgs.discord-ptb
+
+    # school
+    pkgs.obsidian
 
     # dev
     pkgs.devbox

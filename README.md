@@ -15,6 +15,10 @@ wsl --install --no-distribution
 ```
 wsl --import NixOS $env:USERPROFILE\NixOS\ nixos-wsl.tar.gz
 ```
+Note: If there are spaces in your Windows username folder (ex. `C:\Users\User Name\`), change directories into your user folder and run the following command.
+```
+wsl --import NixOS .\NixOS\ nixos-wsl.tar.gz
+```
 4. Open NixOS in WSL
 ```
 wsl -d NixOS
@@ -24,11 +28,5 @@ wsl -d NixOS
 wsl -t NixOS
 wsl -s NixOS
 ```
-6. Open WSL and update the NixOS channels (to 24.05 as of 7/7/2024)
-```
-sudo nix-channel --add https://nixos.org/channels/nixos-24.05 nixos
-sudo nix-channel --update
-sudo nixos-rebuild switch
-```
-7. Follow the steps to [change the default user](https://nix-community.github.io/NixOS-WSL/how-to/change-username.html) to the user specified in `flake.nix`
-8. Clone and build the config in the default user's home
+6. Follow the steps to [change the default user](https://nix-community.github.io/NixOS-WSL/how-to/change-username.html) to the user specified in `flake.nix`
+7. Clone and build the config in the default user's home

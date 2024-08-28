@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.nixd # LSP for Nix
     pkgs.lua-language-server # LS for Lua
+    pkgs.marksman # LS for Markdown
   ];
   
   programs.helix = {

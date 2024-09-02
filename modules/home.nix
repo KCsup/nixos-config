@@ -69,6 +69,8 @@ in
 
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
+    pkgs.gcc # Installing the C compiler to global
+    pkgs.clang-tools
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -27,8 +27,13 @@
     initExtra = ''
       neofetch
       eval "$(zoxide init zsh)"
+
       dev() {
-        nix develop $HOME/.nixconf#$1 --command "zsh"
+        if [[ $# != 1 ]]; then
+          printf '%s\n' "''${(%):-%F{red\}}Supply one arg.''${(%):-%f}"
+        else
+          nix develop $HOME/.nixconf#$1 --command "zsh"
+        fi
       }
     '';
     sessionVariables = {

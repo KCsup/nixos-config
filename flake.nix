@@ -111,7 +111,6 @@
         buildInputs = [
           pkgs.jdk17
           pkgs.jdt-language-server
-          pkgs.gradle
         ];
 
         shellHook = ''

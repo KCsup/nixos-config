@@ -104,5 +104,20 @@
       };
     };
 
+    devShells.${system} = {
+      cs1131 = pkgs.mkShell {
+        name = "cs1131";
+
+        buildInputs = [
+          pkgs.jdk17
+          pkgs.jdt-language-server
+        ];
+
+        shellHook = ''
+          echo Hello Java!
+        '';
+      };
+    };
+
   };
 }

@@ -29,4 +29,7 @@
   hardware.framework.amd-7040.preventWakeOnAC = true;
 
   # boot.loader.systemd-boot.configurationLimit = 20;
+
+  # fix time always being incorrect when booting to windows
+  time.hardwareClockInLocalTime = true;
 }

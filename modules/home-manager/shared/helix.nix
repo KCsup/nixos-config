@@ -82,6 +82,13 @@
           language-servers = [ "nixd" ];
           file-types = [ "nix" ];
         }
+        {
+          name = "java";
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
       ];
     };
   };

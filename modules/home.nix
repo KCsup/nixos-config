@@ -49,6 +49,7 @@ in
 
     # school
     pkgs.obsidian
+    pkgs.nb
 
     # dev
     pkgs.devbox

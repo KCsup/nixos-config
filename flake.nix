@@ -112,9 +112,34 @@
           pkgs.jdk17
           pkgs.jdt-language-server
         ];
+      };
+
+      cs1131-test = pkgs.mkShell {
+        name = "cs1131-test";
+
+        buildInputs = [
+          pkgs.jdk17
+        ];
 
         shellHook = ''
-          echo Hello Java!
+          echo CS1131 EXAM ENV: NO JAVA LANGUAGE SERVER.
+        '';
+      };
+
+      python311 = pkgs.mkShell {
+        name = "python311";
+
+        buildInputs = with pkgs; [
+          python311
+          python311Packages.python-lsp-server
+        ];
+
+        shellHook = ''
+          export VENV_DIR=".venv"
+          if [ ! -d $VENV_DIR ]; then
+            python -m venv $VENV_DIR
+          fi
+          source $VENV_DIR/bin/activate
         '';
       };
     };

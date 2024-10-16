@@ -71,22 +71,22 @@ in
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
 
-    (let
-      pname = "binsider";
-      version = "0.1.0";
-    in
-    pkgs.rustPlatform.buildRustPackage {
-      inherit pname version;
+    # (let
+    #   pname = "binsider";
+    #   version = "0.1.0";
+    # in
+    # pkgs.rustPlatform.buildRustPackage {
+    #   inherit pname version;
 
-      src = pkgs.fetchCrate {
-        inherit pname version;
-        sha256 = "sha256-9nkN2ADfT3rxYDwhNRpGw353cBKlmbueMyx4FOraW9Y=";
-      };
+    #   src = pkgs.fetchCrate {
+    #     inherit pname version;
+    #     sha256 = "sha256-9nkN2ADfT3rxYDwhNRpGw353cBKlmbueMyx4FOraW9Y=";
+    #   };
 
-      cargoSha256 = "sha256-lXYTZ3nvLrfEgo7AY/qSQYpXsyrdJuQQw43xREezNn0=";
+    #   cargoSha256 = "sha256-lXYTZ3nvLrfEgo7AY/qSQYpXsyrdJuQQw43xREezNn0=";
 
-      nativeBuildInputs = [ pkgs.pkg-config ];
-    })
+    #   nativeBuildInputs = [ pkgs.pkg-config ];
+    # })
     
     pkgs.gcc # Installing the C compiler to global
     pkgs.clang-tools

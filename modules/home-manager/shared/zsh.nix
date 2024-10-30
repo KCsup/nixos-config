@@ -32,7 +32,7 @@
         if [[ $# != 1 ]]; then
           printf '%s\n' "''${(%):-%F{red\}}Supply one arg.''${(%):-%f}"
         else
-          nix develop $HOME/.nixconf#$1 --command "zsh"
+          nix develop $HOME/.nixconf#$1 --impure --command "zsh"
         fi
       }
     '';

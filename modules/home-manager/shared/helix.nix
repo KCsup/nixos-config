@@ -5,6 +5,7 @@
     pkgs.nixd # LSP for Nix
     pkgs.lua-language-server # LS for Lua
     pkgs.marksman # LS for Markdown
+    pkgs.java-language-server
   ];
   
   programs.helix = {
@@ -69,6 +70,10 @@
         nixd = {
           command = "nixd";
         };
+
+        java-language-server = {
+          command = "java-language-server";
+        };
       };
 
       language = [
@@ -84,6 +89,8 @@
         }
         {
           name = "java";
+          file-types = [ "java" ];
+          language-servers = [ "java-language-server" ];
           indent = {
             tab-width = 4;
             unit = "    ";

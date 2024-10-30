@@ -111,7 +111,22 @@
         buildInputs = [
           pkgs.jdk17
           pkgs.jdt-language-server
+          pkgs.gnumake
         ];
+      };
+
+      java8 = pkgs.mkShell {
+        name = "java8";
+
+        buildInputs = [
+          pkgs.oraclejdk8
+          pkgs.jdt-language-server
+          pkgs.gnumake
+        ];
+
+        # shellHook = ''
+        #   export CLASSPATH="${pkgs.oraclejdk8}/jre/lib/ext/jfxrt.jar:"
+        # '';
       };
 
       cs1131-test = pkgs.mkShell {
@@ -124,6 +139,18 @@
         shellHook = ''
           echo CS1131 EXAM ENV: NO JAVA LANGUAGE SERVER.
         '';
+      };
+
+      java17 = pkgs.mkShell {
+        name = "java17";
+
+        buildInputs = with pkgs; [
+          jdk17
+          jdt-language-server
+          kotlin
+          # kotlin-language-server
+          gradle
+        ];
       };
 
       python311 = pkgs.mkShell {

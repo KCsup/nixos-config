@@ -159,6 +159,8 @@
         buildInputs = with pkgs; [
           python311
           python311Packages.python-lsp-server
+          python311Packages.tkinter
+          tk
         ];
 
         shellHook = ''
@@ -168,6 +170,16 @@
           fi
           source $VENV_DIR/bin/activate
         '';
+      };
+
+      node = pkgs.mkShell {
+        name = "node";
+
+        buildInputs = with pkgs; [
+          nodejs
+          typescript
+          nodePackages.typescript-language-server
+        ];
       };
     };
 

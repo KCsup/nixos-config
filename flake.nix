@@ -105,16 +105,6 @@
     };
 
     devShells.${system} = {
-      cs1131 = pkgs.mkShell {
-        name = "cs1131";
-
-        buildInputs = [
-          pkgs.jdk17
-          pkgs.jdt-language-server
-          pkgs.gnumake
-        ];
-      };
-
       java8 = pkgs.mkShell {
         name = "java8";
 
@@ -129,18 +119,6 @@
         # '';
       };
 
-      cs1131-test = pkgs.mkShell {
-        name = "cs1131-test";
-
-        buildInputs = [
-          pkgs.jdk17
-        ];
-
-        shellHook = ''
-          echo CS1131 EXAM ENV: NO JAVA LANGUAGE SERVER.
-        '';
-      };
-
       java17 = pkgs.mkShell {
         name = "java17";
 
@@ -153,14 +131,26 @@
         ];
       };
 
+      java21 = pkgs.mkShell {
+        name = "java21";
+
+        buildInputs = with pkgs; [
+          jdk21
+          jdt-language-server
+          gradle
+
+          eclipses.eclipse-java
+        ];
+      };
+
       python311 = pkgs.mkShell {
         name = "python311";
 
         buildInputs = with pkgs; [
           python311
           python311Packages.python-lsp-server
-          python311Packages.tkinter
-          tk
+          python311Packages.numpy
+          python311Packages.pandas
         ];
 
         shellHook = ''
@@ -179,6 +169,26 @@
           nodejs
           typescript
           nodePackages.typescript-language-server
+        ];
+      };
+      
+      deno = pkgs.mkShell {
+        name = "deno";
+
+        buildInputs = with pkgs; [
+          deno
+          typescript
+          nodePackages.typescript-language-server
+        ];
+      };
+
+      rust = pkgs.mkShell {
+        name = "rust";
+
+        buildInputs = with pkgs; [
+          cargo
+          rustc
+          bacon
         ];
       };
     };

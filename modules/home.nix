@@ -36,6 +36,7 @@ in
     pkgs.protonvpn-gui
     pkgs.qdirstat
     pkgs.tree
+    pkgs.unzrip
 
     # (pkgs.callPackage ./slippi {
     #   playbackSlippi = false;
@@ -71,6 +72,7 @@ in
 
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
+    pkgs.emacs
 
     # (let
     #   pname = "binsider";
@@ -91,6 +93,13 @@ in
     
     pkgs.gcc # Installing the C compiler to global
     pkgs.clang-tools
+    pkgs.pkgsCross.mingwW64.buildPackages.gcc
+    pkgs.gnumake
+    pkgs.valgrind
+
+    # man pages
+    pkgs.man-pages
+    pkgs.man-pages-posix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

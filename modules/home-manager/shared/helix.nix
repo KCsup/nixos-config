@@ -96,6 +96,13 @@
             unit = "    ";
           };
         }
+        {
+          name = "c";
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
       ];
     };
   };

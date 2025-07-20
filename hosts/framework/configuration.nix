@@ -28,8 +28,8 @@
   services.fwupd.enable = true;
   hardware.framework.amd-7040.preventWakeOnAC = true;
 
-  boot.kernelPackages =  [
-    pkgs.linuxKernel.packages.linux_zen.apfs
+  boot.extraModulePackages = [
+    pkgs.linuxKernel.packages.linux_6_6.apfs
   ];
 
   # boot.loader.systemd-boot.configurationLimit = 20;

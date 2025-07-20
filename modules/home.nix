@@ -91,6 +91,10 @@ in
     
     pkgs.gcc # Installing the C compiler to global
     pkgs.clang-tools
+
+    # missing man pages
+    pkgs.man-pages
+    pkgs.man-pages-posix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

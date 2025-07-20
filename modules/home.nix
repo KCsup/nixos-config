@@ -93,16 +93,12 @@ in
     
     pkgs.gcc # Installing the C compiler to global
     pkgs.clang-tools
-<<<<<<< HEAD
-
-    # missing man pages
-=======
+    
     pkgs.pkgsCross.mingwW64.buildPackages.gcc
     pkgs.gnumake
     pkgs.valgrind
 
     # man pages
->>>>>>> 2aef3184865064dad4a5fad0ddd53d9a6f5bcf62
     pkgs.man-pages
     pkgs.man-pages-posix
   ];

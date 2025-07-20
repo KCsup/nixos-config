@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
@@ -27,6 +27,10 @@
 
   services.fwupd.enable = true;
   hardware.framework.amd-7040.preventWakeOnAC = true;
+
+  boot.kernelPackages =  [
+    pkgs.linuxKernel.packages.linux_zen.apfs
+  ];
 
   # boot.loader.systemd-boot.configurationLimit = 20;
 

@@ -28,6 +28,8 @@
   services.fwupd.enable = true;
   hardware.framework.amd-7040.preventWakeOnAC = true;
 
+  services.tailscale.enable = true;
+
   boot.extraModulePackages = [
     pkgs.linuxKernel.packages.linux_6_6.apfs
   ];

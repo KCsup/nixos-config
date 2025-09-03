@@ -7,6 +7,7 @@
     pkgs.zoxide
     pkgs.zellij
     pkgs.eza
+    pkgs.unzrip
   ];
   
   programs.zsh = {
@@ -18,6 +19,11 @@
       sr = "sudo reboot";
       ssn = "sudo shutdown now";
       shlvl = "echo $SHLVL";
+      unzip = "unzrip";
+
+      # pico util
+      pico-init = "git clone https://github.com/raspberrypi/pico-sdk.git --branch master; cd pico-sdk; git submodule update --init; cd ..";
+      pico-init-examples = "git clone https://github.com/raspberrypi/pico-examples.git --branch master";
     };
     oh-my-zsh = {
       enable = true;
@@ -41,6 +47,7 @@
     };
   };
 
+  
   programs.bat = {
     enable = true;
 

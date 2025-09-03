@@ -36,7 +36,6 @@ in
     pkgs.protonvpn-gui
     pkgs.qdirstat
     pkgs.tree
-    pkgs.unzrip
 
     # (pkgs.callPackage ./slippi {
     #   playbackSlippi = false;

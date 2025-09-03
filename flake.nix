@@ -105,6 +105,17 @@
     };
 
     devShells.${system} = {
+      pico = pkgs.mkShell {
+        name = "pico";
+
+        buildInputs = with pkgs; [
+          gcc-arm-embedded
+          newlib
+          cmake
+          python311
+        ];
+      };
+      
       java8 = pkgs.mkShell {
         name = "java8";
 

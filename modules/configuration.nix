@@ -147,6 +147,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "qbittorrent-4.6.4"
+  ];
+
   # nixpkgs.overlays = [
   #   (final: prev: {
   #     slippi = prev.callPackage ./applications/slippi { };

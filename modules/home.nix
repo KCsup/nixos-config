@@ -92,6 +92,7 @@ in
     
     pkgs.gcc # Installing the C compiler to global
     pkgs.clang-tools
+    
     pkgs.pkgsCross.mingwW64.buildPackages.gcc
     pkgs.gnumake
     pkgs.valgrind

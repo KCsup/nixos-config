@@ -11,6 +11,8 @@
     pkgs.ventoy
 
     pkgs.fusee-interfacee-tk
+
+    pkgs.tailscale
   ];
 
   # Enables fractional scaling

@@ -5,8 +5,8 @@
 { config, lib, pkgs, inputs, user, isWSL, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
+      # Include the results of the hardware scan.
       inputs.home-manager.nixosModules.default
     ];
 
@@ -99,7 +99,6 @@
   services.printing.enable = !isWSL;
 
   # Enable sound with pipewire.
-  sound.enable = !isWSL;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = !isWSL;
   services.pipewire = lib.mkIf (!isWSL) {

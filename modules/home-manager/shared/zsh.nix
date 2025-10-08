@@ -2,10 +2,10 @@
 
 {
   home.packages = [
-    pkgs.neofetch
+    pkgs.fastfetch
     pkgs.thefuck
     pkgs.zoxide
-    pkgs.zellij
+    # pkgs.zellij
     pkgs.eza
     pkgs.unzrip
   ];
@@ -31,7 +31,11 @@
       theme = "eastwood-custom";
     };
     initExtra = ''
-      neofetch
+      if ! [[ -n $IN_NIX_SHELL ]]; then
+        fastfetch
+      fi
+
+      export SHELL=zsh
       eval "$(zoxide init zsh)"
 
       dev() {
@@ -54,5 +58,17 @@
     config = {
       theme = "gruvbox-dark";
     };
+  };
+
+  programs.zellij = {
+    enable = true;
+
+    # enableZshIntegration = true;
+    # settings = {
+    #   default_shell = "zsh";
+    # };
+    # extraConfig = ''
+    #   default_shell "zsh"
+    # '';
   };
 }

@@ -6,6 +6,7 @@
     pkgs.lua-language-server # LS for Lua
     pkgs.marksman # LS for Markdown
     pkgs.java-language-server
+    pkgs.clang # LS for cpp
   ];
   
   programs.helix = {
@@ -98,6 +99,13 @@
         }
         {
           name = "c";
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
+        {
+          name = "cpp";
           indent = {
             tab-width = 4;
             unit = "    ";

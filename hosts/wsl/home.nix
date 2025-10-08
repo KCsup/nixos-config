@@ -5,5 +5,9 @@
     shellAliases = {
       win-home = "cd /mnt/c/Users/${user}";
     };
+
+    initExtra = ''
+      export COLORTERM=truecolor
+    '';
   };
 }

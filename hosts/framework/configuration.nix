@@ -23,7 +23,10 @@
       search --fs-uuid --set=root $FS_UUID
       chainloader /EFI/Microsoft/Boot/bootmgfw.efi
     }
+    GRUB_SAVEDEFAULT=true
   '';
+  # makes the last selected boot option the top option
+  boot.loader.grub.default = "saved";
 
   services.fwupd.enable = true;
   hardware.framework.amd-7040.preventWakeOnAC = true;

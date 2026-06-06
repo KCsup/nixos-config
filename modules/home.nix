@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, isWSL, ... }:
 
 let
   background-image-path = "file:///home/${user}/.nixconf/modules/home-manager/garf.png";
@@ -96,6 +96,14 @@ in
     pkgs.man-pages
     pkgs.man-pages-posix
   ];
+
+  home.pointerCursor = lib.mkIf (!isWSL) {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

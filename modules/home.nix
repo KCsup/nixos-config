@@ -72,6 +72,7 @@ in
       nativeBuildInputs = [ pkgs.pkg-config ];
     })
     pkgs.emacs
+    pkgs.usbutils
 
     # (let
     #   pname = "binsider";

@@ -15,9 +15,11 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    esp-dev.url = "github:mirrexagon/nixpkgs-esp-dev";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, esp-dev, ... }@inputs:
   let
     user = "josh";
   
@@ -102,14 +104,16 @@
     };
 
     devShells.${system} = {
-      pico = pkgs.mkShell {
-        name = "pico";
+      c-embedded = pkgs.mkShell {
+        name = "c-embedded";
 
         buildInputs = with pkgs; [
           gcc-arm-embedded
           newlib
           cmake
           python311
+
+          arduino-cli
         ];
       };
       
@@ -216,6 +220,26 @@
 
           # libraries
           ncurses
+        ];
+      };
+      
+        
+      esp32 = let
+        esp-shell = esp-dev.devShells.${system}.esp-idf-full;
+      in
+      pkgs.mkShell {
+        name = "esp32";
+
+        inputsFrom = [ esp-shell ];
+
+        buildInputs = with pkgs; [
+          gcc
+          clang-tools
+  
+          gnumake
+          valgrind
+
+          cmake
         ];
       };
     };

@@ -2,9 +2,11 @@
 
 {
   home.packages = [
-    (pkgs.callPackage ../../modules/slippi {
-      playbackSlippi = false;
-    })
+    # disable Slippi install
+    # broken as of 5/25/26
+    # (pkgs.callPackage ../../modules/slippi {
+    #   playbackSlippi = false;
+    # })
 
     pkgs.anytype
 

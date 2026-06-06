@@ -125,7 +125,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "Josh Fernandez";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
     # packages = with pkgs; [
     #   firefox
     #   discord-ptb

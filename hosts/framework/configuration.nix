@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 
 {
   imports =
@@ -12,7 +12,6 @@
       # inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ];
 
-    
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.extraEntries = ''
     menuentry "Windows" {
@@ -37,6 +36,15 @@
     pkgs.linuxKernel.packages.linux_6_6.apfs
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "saleae-logic"
+    ];
+
+  # saleae logic udev
+  services.udev.extraRules = ''
+    ${builtins.readFile ./udev/90-saleae-logic.rules}
+  '';
+  
   # boot.loader.systemd-boot.configurationLimit = 20;
 
   # fix time always being incorrect when booting to windows

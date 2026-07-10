@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+
+    
   home.packages = [
     # disable Slippi install
     # broken as of 5/25/26
@@ -15,6 +17,8 @@
     pkgs.fusee-interfacee-tk
 
     pkgs.tailscale
+
+    (pkgs.callPackage ./pkgs/saleae-logic-2.nix { })
   ];
 
   # Enables fractional scaling
